@@ -1,0 +1,96 @@
+﻿@model EVoucher_CMS_Client.Models.RequestModels.SubmitEVoucherRequest
+
+<form method="post" asp-controller="Calculator" asp-action="UpSertCalcItemForm" id="EVoucherNewForm" enctype="multipart/form-data">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="Title">Title</label>
+            <input type="text" class="form-control" asp-for="Title" placeholder="Title">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="Description">Description</label>
+            <input type="text" class="form-control" asp-for="Description" placeholder="Description">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="ExpiryDate">ExpiryDate</label>
+            <input type="date" class="form-control" asp-for="ExpiryDate" placeholder="ExpiryDate">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="BuyType">BuyType</label>
+            @{ var btye = new List<SelectListItem>()
+                                                           {
+                    new SelectListItem {Value = "" , Text = " -- Choose -- " },
+                    new SelectListItem {Value = "OnlyMe" , Text = "OnlyMe" },
+                    new SelectListItem {Value = "Gift" , Text = "Gift" }
+                }; }
+            <select asp-for="BuyType" asp-items="btye" class="form-control" required></select>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="VoucherAmount">VoucherAmount</label>
+            <input type="number" class="form-control" asp-for="VoucherAmount" placeholder="VoucherAmount">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="PaymentMethod">PaymentMethod</label>
+            @{ var pmt = new List<SelectListItem>()
+                                                               {
+                    new SelectListItem {Value = "" , Text = " -- Choose -- " },
+                    new SelectListItem {Value = "JCB" , Text = "JCB" },
+                    new SelectListItem {Value = "MasterCard" , Text = "MasterCard" },
+                    new SelectListItem {Value = "PayPal" , Text = "PayPal" },
+                    new SelectListItem {Value = "VISA" , Text = "VISA" }
+                }; }
+            <select asp-for="PaymentMethod" asp-items="pmt" class="form-control" required></select>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="SellingPrice">SellingPrice</label>
+            <input type="number" class="form-control" asp-for="SellingPrice" placeholder="SellingPrice">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="SellingDiscount">SellingDiscount</label>
+            <input type="number" class="form-control" asp-for="SellingDiscount" placeholder="SellingDiscount">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="Quantity">Quantity</label>
+            <input type="number" class="form-control" asp-for="Quantity" placeholder="Quantity">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="MaxLimit">MaxLimit</label>
+            <input type="number" class="form-control" asp-for="MaxLimit" placeholder="MaxLimit">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="GiftPerUserLimit">GiftPerUserLimit</label>
+            <input type="number" class="form-control" asp-for="GiftPerUserLimit" placeholder="GiftPerUserLimit">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="Status">Status</label>
+            <input type="number" class="form-control" asp-for="Status" placeholder="Status">
+        </div>
+    </div>
+
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default rounded-pill" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success rounded-pill" id="savebtn" onclick="Validate()">Submit</button>
+    </div>
+
+    <div>
+        @*Hidden Fields*@
+        <input type="hidden" asp-for="VoucherNo" />
+        <input type="hidden" asp-for="Image" />
+    </div>
+
+</form>
